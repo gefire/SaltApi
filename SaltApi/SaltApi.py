@@ -13,7 +13,7 @@ class SaltApi():
         self.passoword = password
         self.auth = auth
         self.headers = {
-            'Accept': 'application/json',
+            "Accept": "application/json",
             "Content-type": "application/json"
         }
         self.post_data = ""
@@ -34,12 +34,13 @@ class SaltApi():
         self.expire = resp["expire"]
         return self.token
 
-    def run(self, cmd="test.ping", target="*"):
+    def run(self, fun="test.ping", target="*", arg_list=[]):
         self.post_data = [
             {
                 "client": "local",
                 "tgt": target,
-                "fun": cmd,
+                "fun": fun,
+                "arg": arg_list,
                 "username": self.username,
                 "password": self.passoword,
                 "eauth": self.auth
